@@ -1,15 +1,15 @@
-import { SearchIcon } from "../../icons/SearchIcon";
-import { CloseIcon } from "../../icons/CloseIcon";
+import { SearchIcon } from '../../icons/SearchIcon';
+import { CloseIcon } from '../../icons/CloseIcon';
 import {
   ChangeEvent,
   KeyboardEvent,
   useCallback,
   useMemo,
   useState,
-} from "react";
-import debounce from "lodash.debounce";
+} from 'react';
+import debounce from 'lodash.debounce';
 
-import "./SearchInput.css";
+import './SearchInput.css';
 
 interface Props {
   onChange: (value?: string) => void;
@@ -26,7 +26,7 @@ export const SearchInput = ({ onChange, defaultValue }: Props) => {
   const debouncedSearch = useMemo(() => debounce(onChange, 300), []);
 
   const handleKeyUp = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       // @ts-ignore
       const q = e.target?.value;
       onChange(q);
@@ -36,24 +36,24 @@ export const SearchInput = ({ onChange, defaultValue }: Props) => {
 
   const handleClear = useCallback(() => {
     onChange();
-    setQuery("");
+    setQuery('');
   }, [onChange]);
 
   return (
-    <div className="search-input-container">
-      <span className="search-input-icon">
+    <div className='search-input-container'>
+      <span className='search-input-icon'>
         <SearchIcon />
       </span>
       <input
-        name="q"
+        name='q'
         defaultValue={defaultValue}
-        className="input search-input"
+        className='input search-input'
         onChange={handleChange}
         onKeyUp={handleKeyUp}
         autoFocus
       />
       {!!query && (
-        <span className="search-input-clear" onClick={handleClear}>
+        <span className='search-input-clear' onClick={handleClear}>
           <CloseIcon />
         </span>
       )}

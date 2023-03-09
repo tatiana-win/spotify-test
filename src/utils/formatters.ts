@@ -8,7 +8,7 @@ export const formatDuration = (duration: number): string => {
   duration = minutes > 0 ? duration - minutes * 60 * 1000 : duration;
   const seconds = Math.floor(duration / 1000);
 
-  return `${hours ? hours + ":" : ""}${
-    minutes ? (hours ? addZeroIfNeeded(minutes) : minutes) : "00"
-  }:${seconds ? addZeroIfNeeded(seconds) : "00"}`;
+  return `${hours ? hours + ':' : ''}${
+    minutes ? (hours ? addZeroIfNeeded(minutes) : minutes) : '00'
+  }:${seconds ? addZeroIfNeeded(seconds) : '00'}`;
 };

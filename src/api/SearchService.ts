@@ -1,7 +1,7 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQueryWithReauth } from "./BaseQueryWithReauth";
-import { Artist } from "../models/Artist";
-import { Track } from "../models/Track";
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from './BaseQueryWithReauth';
+import { Artist } from '../models/Artist';
+import { Track } from '../models/Track';
 
 interface RawImage {
   url: string;
@@ -41,17 +41,17 @@ interface SearchResponse {
 
 export const SearchService = createApi({
   baseQuery: baseQueryWithReauth,
-  reducerPath: "searchApi",
-  endpoints: (build) => ({
+  reducerPath: 'searchApi',
+  endpoints: build => ({
     search: build.query<
       { artists: Artist[]; tracks: Track[] },
       { q: string; type?: string }
     >({
-      query: ({ q, type = "artist,track" }) => ({
-        url: "https://api.spotify.com/v1/search",
-        method: "GET",
+      query: ({ q, type = 'artist,track' }) => ({
+        url: 'https://api.spotify.com/v1/search',
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         params: {
           q,
@@ -67,8 +67,8 @@ export const SearchService = createApi({
                   artist.images[0]?.url,
                   artist.name,
                   artist.id,
-                  artist.genres
-                )
+                  artist.genres,
+                ),
             ) || [],
           tracks:
             response.tracks?.items.map(
@@ -79,30 +79,30 @@ export const SearchService = createApi({
                   track.id,
                   track.duration_ms,
                   new Artist(
-                    "",
+                    '',
                     track.artists[0]?.name,
                     track.artists[0]?.id,
-                    []
-                  )
-                )
+                    [],
+                  ),
+                ),
             ) || [],
         };
       },
       transformErrorResponse: (
         response: { status: string | number },
         meta,
-        arg
+        arg,
       ) => response,
     }),
     recommendations: build.query<{ tracks: Track[] }, void>({
       query: () => ({
-        url: "https://api.spotify.com/v1/recommendations",
-        method: "GET",
+        url: 'https://api.spotify.com/v1/recommendations',
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         params: {
-          seed_genres: "rock",
+          seed_genres: 'rock',
         },
       }),
       transformResponse(response: { tracks: RawTrack[] }) {
@@ -114,23 +114,23 @@ export const SearchService = createApi({
                 track.name,
                 track.id,
                 track.duration_ms,
-                new Artist("", track.artists[0].name, track.artists[0].id, [])
-              )
+                new Artist('', track.artists[0].name, track.artists[0].id, []),
+              ),
           ),
         };
       },
       transformErrorResponse: (
         response: { status: string | number },
         meta,
-        arg
+        arg,
       ) => response,
     }),
     relatedArtists: build.query<{ artists: Artist[] }, string>({
-      query: (id) => ({
+      query: id => ({
         url: `https://api.spotify.com/v1/artists/${id}/related-artists`,
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }),
       transformResponse(response: { artists: RawArtist[] }) {
@@ -141,15 +141,15 @@ export const SearchService = createApi({
                 artist.images[0]?.url,
                 artist.name,
                 artist.id,
-                artist.genres
-              )
+                artist.genres,
+              ),
           ),
         };
       },
       transformErrorResponse: (
         response: { status: string | number },
         meta,
-        arg
+        arg,
       ) => response,
     }),
   }),

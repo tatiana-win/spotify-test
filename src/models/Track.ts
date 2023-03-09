@@ -1,5 +1,5 @@
-import { SearchResult, SearchResultType } from "./SearchResult";
-import { Artist } from "./Artist";
+import { SearchResult, SearchResultType } from './SearchResult';
+import { Artist } from './Artist';
 
 export class Track implements SearchResult {
   image: string;
@@ -15,7 +15,7 @@ export class Track implements SearchResult {
     name: string,
     id: string,
     duration: number,
-    artist: Artist
+    artist: Artist,
   ) {
     this.type = SearchResultType.track;
     this.image = image;

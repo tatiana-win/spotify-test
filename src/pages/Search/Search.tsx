@@ -1,14 +1,14 @@
-import "./Search.css";
-import { connect } from "react-redux";
-import { search } from "../../actions/search";
-import { useCallback, useEffect, useState } from "react";
-import { Artist } from "../../models/Artist";
-import { Track } from "../../models/Track";
-import { ArtistListItem } from "../../components/Artist/Artist";
-import { TracksList } from "../../components/TracksList/TracksList";
-import { useLoaderData } from "react-router-dom";
-import { SearchInput } from "../../components/SearchInput/Searchinput";
-import { Loader } from "../../components/Loader/Loader";
+import './Search.css';
+import { connect } from 'react-redux';
+import { search } from '../../actions/search';
+import { useCallback, useEffect, useState } from 'react';
+import { Artist } from '../../models/Artist';
+import { Track } from '../../models/Track';
+import { ArtistListItem } from '../../components/Artist/Artist';
+import { TracksList } from '../../components/TracksList/TracksList';
+import { useLoaderData } from 'react-router-dom';
+import { SearchInput } from '../../components/SearchInput/Searchinput';
+import { Loader } from '../../components/Loader/Loader';
 
 interface MapProps {
   artists: Artist[];
@@ -34,28 +34,28 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
 
     const url = new URL(window.location.href);
     if (query) {
-      url.searchParams.set("q", query);
+      url.searchParams.set('q', query);
     } else {
-      url.searchParams.delete("q");
+      url.searchParams.delete('q');
     }
-    window.history.replaceState(null, "", url);
+    window.history.replaceState(null, '', url);
   }, []);
 
   return (
-    <div className="page">
-      <h1 className="title">Search</h1>
+    <div className='page'>
+      <h1 className='title'>Search</h1>
       <SearchInput onChange={handleChange} defaultValue={q} />
       {!artists.length && !tracks.length && (
-        <div className="loader-container">
+        <div className='loader-container'>
           <Loader />
         </div>
       )}
 
       {!!artists.length && (
         <>
-          <h2 className="subtitle">Artists</h2>
-          <div className="search-artists">
-            {artists.map((artist) => (
+          <h2 className='subtitle'>Artists</h2>
+          <div className='search-artists'>
+            {artists.map(artist => (
               <ArtistListItem artist={artist} key={artist.id} />
             ))}
           </div>
@@ -64,8 +64,8 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
 
       {!!tracks.length && (
         <>
-          <h2 className="subtitle">{query ? "Tracks" : "Recommendations"}</h2>
-          <div className="search-tracks">
+          <h2 className='subtitle'>{query ? 'Tracks' : 'Recommendations'}</h2>
+          <div className='search-tracks'>
             <TracksList tracks={tracks} />
           </div>
         </>
@@ -80,10 +80,10 @@ const mapStateToProps = (state: any): MapProps => ({
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
-  search: (q) => dispatch(search(q)),
+  search: q => dispatch(search(q)),
 });
 
 export const SearchPage = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(SearchPure);

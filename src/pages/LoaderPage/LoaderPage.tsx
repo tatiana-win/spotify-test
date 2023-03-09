@@ -1,10 +1,10 @@
-import { getTokenByCode } from "../../actions/getTokenByCode";
-import { connect } from "react-redux";
-import { useLoaderData } from "react-router-dom";
-import { useEffect } from "react";
+import { getTokenByCode } from '../../actions/getTokenByCode';
+import { connect } from 'react-redux';
+import { useLoaderData } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import "./LoaderPage.css";
-import { Loader } from "../../components/Loader/Loader";
+import './LoaderPage.css';
+import { Loader } from '../../components/Loader/Loader';
 
 interface DispatchProps {
   authorize: (code: string) => void;
@@ -18,7 +18,7 @@ const LoaderPagePure = ({ authorize }: DispatchProps) => {
   }, []);
 
   return (
-    <div className="loaderPage">
+    <div className='loaderPage'>
       <Loader />
     </div>
   );
@@ -30,5 +30,5 @@ const mapDispatchToState = (dispatch: any): DispatchProps => ({
 
 export const LoaderPage = connect(
   undefined,
-  mapDispatchToState
+  mapDispatchToState,
 )(LoaderPagePure);
