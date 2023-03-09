@@ -1,0 +1,33 @@
+.navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation > li {
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.navigation > li a {
+  display: block;
+  color: #222;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+/* Change the link color on hover */
+.navigation li a:hover {
+  color: #555;
+}
+
+.navigation > .active a {
+  background-color: var(--item-active);
+  color: white;
+}
+
+.navigation > .active a:hover {
+  color: white;
+}

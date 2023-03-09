@@ -1,0 +1,22 @@
+.search-input-container {
+  position: relative;
+  max-width: 360px;
+  display: flex;
+}
+
+.search-input-icon {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+}
+
+.search-input-clear {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  cursor: pointer;
+}
+
+.search-input-clear:hover > svg {
+  fill: rgba(0, 0, 0, 0.6);
+}
