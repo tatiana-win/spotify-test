@@ -32,12 +32,12 @@
   margin-top: 16px;
   font-size: 16px;
   font-weight: 700;
-  color: #000;
+  color: var(--text-base);
   line-height: 25px;
   margin-bottom: 4px;
 }
 
 .artist-type {
-  color: #6a6a6a;
+  color: var(--text-secondary);
   font-size: 14px;
 }

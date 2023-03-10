@@ -1,17 +1,46 @@
 :root {
   --item-active: #4e54cc;
+  --text-base: #222;
+  --text-secondary: #6a6a6a;
+  --text-hover: #555;
 }
 
 .app {
   display: flex;
   height: 100%;
+  position: relative;
 }
 
 .app-nav {
-  width: 300px;
+  display: none;
+  width: 250px;
   background: #f4f4f4;
-  display: flex;
   flex-direction: column;
+}
+
+.bottom-nav {
+  display: none;
+  background: #f4f4f4;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@media screen and (max-width: 649px) {
+  .app {
+    padding-bottom: 70px;
+  }
+
+  .bottom-nav {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .app-nav {
+    display: flex;
+  }
 }
 
 .app-content {

@@ -3,16 +3,22 @@ import './App.css';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { tokenService } from './services/TokenService';
 import { Logo } from './icons/Logo/Logo';
-import { Navigation, NavItem } from './components/Navigation/Navigation';
+import { Navigation } from './components/Navigation/Navigation';
+import { NavItem } from './models/NavItem';
+import { SearchIcon } from './icons/SearchIcon';
+import { PeopleIcon } from './icons/PeopleIcon';
+import { BottomNavigation } from './components/BottomNavigation/BottomNavigation';
 
 const navItems: NavItem[] = [
   {
     name: 'Search',
     link: 'search',
+    icon: <SearchIcon />,
   },
   {
     name: 'Artists',
     link: 'artists',
+    icon: <PeopleIcon />,
   },
 ];
 
@@ -34,6 +40,10 @@ function App() {
       <nav className='app-nav'>
         <Logo className='app-logo' />
         <Navigation items={navItems} activeItem={activeNavItem} />
+      </nav>
+
+      <nav className='bottom-nav'>
+        <BottomNavigation items={navItems} activeItem={activeNavItem} />
       </nav>
       <div className='app-content'>
         <Outlet />

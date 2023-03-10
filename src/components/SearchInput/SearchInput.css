@@ -1,7 +1,18 @@
 .search-input-container {
   position: relative;
-  max-width: 360px;
   display: flex;
+}
+
+@media screen and (min-width: 650px) {
+  .search-input-container {
+    max-width: 360px;
+  }
+}
+
+@media screen and (max-width: 649px) {
+  .search-input-container {
+    width: calc(100% - 32px);
+  }
 }
 
 .search-input-icon {
@@ -18,5 +29,5 @@
 }
 
 .search-input-clear:hover > svg {
-  fill: rgba(0, 0, 0, 0.6);
+  fill: var(--text-hover);
 }

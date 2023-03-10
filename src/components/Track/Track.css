@@ -28,7 +28,7 @@
 .track-name {
   font-size: 14px;
   font-weight: 700;
-  color: #000;
+  color: var(--text-base);
   line-height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -41,7 +41,7 @@
 }
 
 .track-duration {
-  color: #777;
+  color: var(--text-secondary);
   font-size: 14px;
   display: flex;
   align-items: center;
