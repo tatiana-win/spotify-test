@@ -15,7 +15,7 @@ interface MapProps {
   tracks: Track[];
 }
 interface DispatchProps {
-  search: (q?: string) => void;
+  search: (q?: string) => Promise<void>;
 }
 
 interface Props extends MapProps, DispatchProps {}
@@ -24,8 +24,19 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
   // @ts-ignore
   const { q } = useLoaderData();
   const [query, setQuery] = useState(q);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    search(q);
+    const loadRecommendation = async () => {
+      setLoading(true);
+      try {
+        await search(q);
+      } catch (e) {
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRecommendation();
   }, []);
 
   const handleChange = useCallback((query?: string) => {
@@ -45,7 +56,7 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
     <div className='page'>
       <h1 className='title'>Search</h1>
       <SearchInput onChange={handleChange} defaultValue={q} />
-      {!artists.length && !tracks.length && (
+      {loading && (
         <div className='loader-container'>
           <Loader />
         </div>
@@ -60,6 +71,10 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
             ))}
           </div>
         </>
+      )}
+
+      {!loading && !artists.length && !tracks.length && (
+        <div className='search-stub'>Type something</div>
       )}
 
       {!!tracks.length && (

@@ -4,8 +4,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { Artist } from '../../models/Artist';
 import { ArtistListItem } from '../../components/Artist/Artist';
 import { SearchInput } from '../../components/SearchInput/Searchinput';
-import { searchArtists } from '../../actions/searchArtists';
 import { Loader } from '../../components/Loader/Loader';
+import { search } from '../../actions/search';
+import { SearchType } from '../../models/SearchType';
 
 interface MapProps {
   artists: Artist[];
@@ -57,7 +58,7 @@ const mapStateToProps = (state: any): MapProps => ({
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
-  search: q => dispatch(searchArtists(q)),
+  search: q => dispatch(search(q, SearchType.artist)),
 });
 
 export const ArtistsPage = connect(

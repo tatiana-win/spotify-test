@@ -5,8 +5,8 @@ import './core/coreStyles.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Auth } from './pages/Auth/Auth';
-import { SearchPage } from './pages/Search/Search';
+import { Auth } from './pages/AuthPage/Auth';
+import { SearchPage } from './pages/SearchPage/Search';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import { parseCodeAndGetToken } from './actions/parseCodeAndGetToken';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
@@ -17,7 +17,7 @@ import { AuthService } from './api/AuthService';
 import { LoaderPage } from './pages/LoaderPage/LoaderPage';
 import { SearchService } from './api/SearchService';
 import { searchLoader } from './actions/searchLoader';
-import { ArtistsPage } from './pages/Artists/Artists';
+import { ArtistsPage } from './pages/ArtistsPage/Artists';
 
 const store = configureStore({
   reducer: {

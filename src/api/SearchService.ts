@@ -2,6 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from './BaseQueryWithReauth';
 import { Artist } from '../models/Artist';
 import { Track } from '../models/Track';
+import { SearchType } from '../models/SearchType';
 
 interface RawImage {
   url: string;
@@ -34,20 +35,22 @@ interface RawTrack {
   name: string;
   duration_ms: number;
 }
-interface SearchResponse {
+interface SearchRawResponse {
   artists?: { items: RawArtist[] };
   tracks?: { items: RawTrack[] };
+}
+
+interface SearchResponse {
+  artists: Artist[];
+  tracks: Track[];
 }
 
 export const SearchService = createApi({
   baseQuery: baseQueryWithReauth,
   reducerPath: 'searchApi',
   endpoints: build => ({
-    search: build.query<
-      { artists: Artist[]; tracks: Track[] },
-      { q: string; type?: string }
-    >({
-      query: ({ q, type = 'artist,track' }) => ({
+    search: build.query<SearchResponse, { q: string; type?: string }>({
+      query: ({ q, type = SearchType.all }) => ({
         url: 'https://api.spotify.com/v1/search',
         method: 'GET',
         headers: {
@@ -58,7 +61,7 @@ export const SearchService = createApi({
           type,
         },
       }),
-      transformResponse(response: SearchResponse) {
+      transformResponse(response: SearchRawResponse) {
         return {
           artists:
             response.artists?.items.map(
@@ -94,7 +97,7 @@ export const SearchService = createApi({
         arg,
       ) => response,
     }),
-    recommendations: build.query<{ tracks: Track[] }, void>({
+    recommendations: build.query<SearchResponse, void>({
       query: () => ({
         url: 'https://api.spotify.com/v1/recommendations',
         method: 'GET',
@@ -107,6 +110,7 @@ export const SearchService = createApi({
       }),
       transformResponse(response: { tracks: RawTrack[] }) {
         return {
+          artists: [],
           tracks: response.tracks.map(
             (track: RawTrack) =>
               new Track(
@@ -125,7 +129,7 @@ export const SearchService = createApi({
         arg,
       ) => response,
     }),
-    relatedArtists: build.query<{ artists: Artist[] }, string>({
+    relatedArtists: build.query<SearchResponse, string>({
       query: id => ({
         url: `https://api.spotify.com/v1/artists/${id}/related-artists`,
         method: 'GET',
@@ -135,6 +139,7 @@ export const SearchService = createApi({
       }),
       transformResponse(response: { artists: RawArtist[] }) {
         return {
+          tracks: [],
           artists: response.artists.map(
             (artist: RawArtist) =>
               new Artist(
