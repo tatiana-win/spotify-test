@@ -11,7 +11,7 @@
 
 @media screen and (max-width: 649px) {
   .search-input-container {
-    width: calc(100% - 32px);
+    width: calc(100vw - 32px);
   }
 }
 

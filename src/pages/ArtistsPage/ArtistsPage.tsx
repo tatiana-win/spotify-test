@@ -1,4 +1,4 @@
-import './Artists.css';
+import './ArtistsPage.css';
 import { connect } from 'react-redux';
 import { useCallback, useEffect, useState } from 'react';
 import { Artist } from '../../models/Artist';

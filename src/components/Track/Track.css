@@ -3,6 +3,7 @@
   width: 100%;
   padding: 8px;
   height: 50px;
+  text-decoration: none;
 }
 
 .track:hover {
@@ -38,6 +39,11 @@
   color: #777;
   font-size: 14px;
   line-height: 20px;
+  text-decoration: none;
+}
+
+.track-artist:hover {
+  text-decoration: underline;
 }
 
 .track-duration {
@@ -48,4 +54,11 @@
   margin-left: 20px;
   flex: 1;
   justify-content: flex-end;
+}
+
+@media screen and (max-width: 649px) {
+  .track {
+    margin: 0 4px;
+    width: auto;
+  }
 }

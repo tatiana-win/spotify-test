@@ -13,8 +13,8 @@ export const searchSlice = createSlice({
     searchResultsLoaded(state, action) {
       return {
         ...state,
-        artists: action.payload.artists,
-        tracks: action.payload.tracks,
+        artists: action.payload.artists ?? [],
+        tracks: action.payload.tracks ?? [],
       };
     },
   },

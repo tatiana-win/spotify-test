@@ -3,38 +3,9 @@ import { baseQueryWithReauth } from './BaseQueryWithReauth';
 import { Artist } from '../models/Artist';
 import { Track } from '../models/Track';
 import { SearchType } from '../models/SearchType';
+import { RawArtist } from '../models/RawArtist';
+import { RawTrack } from '../models/RawTrack';
 
-interface RawImage {
-  url: string;
-  height: number;
-  width: number;
-}
-
-interface RawArtist {
-  id: string;
-  images: RawImage[];
-  name: string;
-  href: string;
-  genres: string[];
-}
-
-interface RawTrack {
-  album: {
-    images: RawImage[];
-    id: string;
-    name: string;
-    release_date: string;
-  };
-  artists: {
-    href: string;
-    id: string;
-    name: string;
-  }[];
-  href: string;
-  id: string;
-  name: string;
-  duration_ms: number;
-}
 interface SearchRawResponse {
   artists?: { items: RawArtist[] };
   tracks?: { items: RawTrack[] };
@@ -77,7 +48,8 @@ export const SearchService = createApi({
             response.tracks?.items.map(
               (track: RawTrack) =>
                 new Track(
-                  track.album.images[0]?.url,
+                  track.external_urls.spotify,
+                  track.album.images[track.album.images.length - 1]?.url,
                   track.name,
                   track.id,
                   track.duration_ms,
@@ -105,7 +77,7 @@ export const SearchService = createApi({
           'Content-Type': 'application/json',
         },
         params: {
-          seed_genres: 'rock',
+          seed_artists: '12Chz98pHFMPJEknJQMWvI,3TOqt5oJwL9BE2NG9MEwDa',
         },
       }),
       transformResponse(response: { tracks: RawTrack[] }) {
@@ -114,39 +86,12 @@ export const SearchService = createApi({
           tracks: response.tracks.map(
             (track: RawTrack) =>
               new Track(
-                track.album.images[0]?.url,
+                track.external_urls.spotify,
+                track.album.images[track.album.images.length - 1]?.url,
                 track.name,
                 track.id,
                 track.duration_ms,
                 new Artist('', track.artists[0].name, track.artists[0].id, []),
-              ),
-          ),
-        };
-      },
-      transformErrorResponse: (
-        response: { status: string | number },
-        meta,
-        arg,
-      ) => response,
-    }),
-    relatedArtists: build.query<SearchResponse, string>({
-      query: id => ({
-        url: `https://api.spotify.com/v1/artists/${id}/related-artists`,
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }),
-      transformResponse(response: { artists: RawArtist[] }) {
-        return {
-          tracks: [],
-          artists: response.artists.map(
-            (artist: RawArtist) =>
-              new Artist(
-                artist.images[0]?.url,
-                artist.name,
-                artist.id,
-                artist.genres,
               ),
           ),
         };

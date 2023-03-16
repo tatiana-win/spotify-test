@@ -14,25 +14,8 @@
   margin-right: 16px;
 }
 
-.search-tracks {
-  min-width: 340px;
-  padding-bottom: 16px;
-}
-
 .search-stub {
   margin-top: 20px;
   font-size: 18px;
   color: var(--text-secondary);
-}
-
-@media screen and (max-width: 649px) {
-  .search-tracks {
-    width: calc(100% - 48px);
-  }
-}
-
-@media screen and (min-width: 650px) {
-  .search-tracks {
-    width: 70%;
-  }
 }

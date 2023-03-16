@@ -80,9 +80,7 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
       {!!tracks.length && (
         <>
           <h2 className='subtitle'>{query ? 'Tracks' : 'Recommendations'}</h2>
-          <div className='search-tracks'>
-            <TracksList tracks={tracks} />
-          </div>
+          <TracksList tracks={tracks} />
         </>
       )}
     </div>

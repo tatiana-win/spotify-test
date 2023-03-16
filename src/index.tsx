@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import './core/coreStyles.css';
+import './common.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -17,18 +17,24 @@ import { AuthService } from './api/AuthService';
 import { LoaderPage } from './pages/LoaderPage/LoaderPage';
 import { SearchService } from './api/SearchService';
 import { searchLoader } from './actions/searchLoader';
-import { ArtistsPage } from './pages/ArtistsPage/Artists';
+import { ArtistsPage } from './pages/ArtistsPage/ArtistsPage';
+import { ArtistPage } from './pages/ArtistPage/ArtistPage';
+import { ArtistsService } from './api/ArtistsService';
+import { artistsSlice } from './reducers/artistsSlice';
 
 const store = configureStore({
   reducer: {
     search: searchSlice.reducer,
+    artists: artistsSlice.reducer,
     [AuthService.reducerPath]: AuthService.reducer,
     [SearchService.reducerPath]: SearchService.reducer,
+    [ArtistsService.reducerPath]: ArtistsService.reducer,
   },
   middleware: [
     thunk,
     AuthService.middleware,
     SearchService.middleware,
+    ArtistsService.middleware,
     ...getDefaultMiddleware({
       serializableCheck: false,
     }),
@@ -45,6 +51,10 @@ const router = createBrowserRouter([
         path: 'search',
         element: <SearchPage />,
         loader: searchLoader,
+      },
+      {
+        path: 'artists/:id',
+        element: <ArtistPage />,
       },
       {
         path: 'artists',

@@ -18,7 +18,6 @@
   font-weight: 700;
 }
 
-/* Change the link color on hover */
 .navigation li a:hover {
   color: var(--text-hover);
 }

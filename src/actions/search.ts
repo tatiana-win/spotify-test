@@ -2,6 +2,7 @@ import { SearchService } from '../api/SearchService';
 import { searchResultsLoaded } from '../reducers/searchSlice';
 import { SearchType } from '../models/SearchType';
 import { randomInRange } from '../utils/random';
+import { ArtistsService } from '../api/ArtistsService';
 
 const possibleArtists = [
   '12Chz98pHFMPJEknJQMWvI',
@@ -12,7 +13,7 @@ const possibleArtists = [
 const getRecommendations = (type = SearchType.all) => {
   switch (type) {
     case SearchType.artist:
-      return SearchService.endpoints.relatedArtists.initiate(
+      return ArtistsService.endpoints.getRelatedArtists.initiate(
         possibleArtists[randomInRange(0, possibleArtists.length - 1)],
       );
     default:

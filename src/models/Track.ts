@@ -7,16 +7,18 @@ export class Track implements SearchResult {
   id: string;
   type: SearchResultType;
   artist: Artist;
-
   duration: number;
+  url: string;
 
   constructor(
+    url: string,
     image: string,
     name: string,
     id: string,
     duration: number,
     artist: Artist,
   ) {
+    this.url = url;
     this.type = SearchResultType.track;
     this.image = image;
     this.name = name;

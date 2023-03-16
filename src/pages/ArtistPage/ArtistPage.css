@@ -1,0 +1,138 @@
+.artistPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.artistPage-header {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.artistPage-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-size: contain;
+}
+
+.artistPage-imageContainer {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 16px 16px 0 0;
+}
+
+.artistPage-description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.artistPage-type {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.artistPage-name {
+  font-size: 45px;
+  line-height: 45px;
+  font-weight: 700;
+  color: var(--text-base);
+  margin: 16px 0 8px;
+}
+
+.artistPage-followers {
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--text-base);
+  margin-bottom: 8px;
+}
+
+.artistPage-genres {
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.artistPage-genre {
+  margin-right: 8px;
+}
+
+.artistPage-tracks {
+  margin-top: 20px;
+}
+
+.artistPage-albums {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 2px;
+}
+
+.artistPage-albums .album {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 649px) {
+  .artistPage-image {
+    width: calc(100vw - 32px);
+    height: 400px;
+    border-radius: 0;
+    background-size: cover;
+    margin: 0;
+  }
+
+  .artistPage-imageContainer {
+    width: calc(100vw - 32px);
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 16px 16px 0 0;
+  }
+
+  .artistPage-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .artistPage-description {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    text-align: center;
+  }
+
+  .artistPage-genres {
+    justify-content: center;
+  }
+
+  .artistPage-name,
+  .artistPage-followers {
+    color: #eee;
+  }
+
+  .artistPage-genre,
+  .artistPage-type {
+    color: #aaa;
+  }
+
+  .artistPage-tracks {
+    margin-top: 0;
+  }
+}

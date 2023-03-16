@@ -5,6 +5,7 @@
   align-items: center;
   min-width: 155px;
   width: 155px;
+  text-decoration: none;
 }
 
 .artist:hover {
@@ -40,4 +41,16 @@
 .artist-type {
   color: var(--text-secondary);
   font-size: 14px;
+}
+
+@media screen and (max-width: 649px) {
+  .artist {
+    padding: 8px;
+    min-width: 139px;
+    width: 139px;
+  }
+
+  .artist-text {
+    width: 139px;
+  }
 }

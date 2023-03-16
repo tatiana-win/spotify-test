@@ -1,0 +1,9 @@
+.artists-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2px 20px;
+}
+
+.artists-list .artist {
+  margin: 0 16px 16px 0;
+}

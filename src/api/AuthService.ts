@@ -8,9 +8,6 @@ import { baseQueryWithReauth } from './BaseQueryWithReauth';
 export const AuthService = createApi({
   baseQuery: baseQueryWithReauth,
   reducerPath: 'authApi',
-  // fetchBaseQuery({
-  //     baseUrl: 'https://accounts.spotify.com',
-  // }),
   endpoints: build => ({
     getTokenByCode: build.query<AuthToken, string>({
       query: (code: string) => ({

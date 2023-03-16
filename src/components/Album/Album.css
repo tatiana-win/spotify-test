@@ -1,0 +1,77 @@
+.album {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  text-decoration: none;
+  width: 232px;
+  overflow: hidden;
+}
+
+.album:hover {
+  box-shadow: 0 0 0 2px var(--item-active);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.album-image {
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+  margin: 16px 16px 12px;
+}
+
+.album-text {
+  width: calc(100% - 32px);
+}
+
+.album-name {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-base);
+  margin: 0 16px;
+}
+
+.album-artist,
+.album-year {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--text-secondary);
+  margin: 4px 16px 0;
+}
+
+.album-year {
+  margin-bottom: 16px;
+}
+
+.album-artist:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 753px) {
+  .album {
+    width: 136px;
+  }
+
+  .album-image {
+    width: 120px;
+    height: 120px;
+    margin: 8px 8px 12px;
+  }
+
+  .album-text {
+    width: calc(100% - 16px);
+  }
+
+  .album-name {
+    margin: 0 8px;
+  }
+
+  .album-artist,
+  .album-year {
+    margin: 4px 8px 0;
+  }
+
+  .album-year {
+    margin-bottom: 8px;
+  }
+}

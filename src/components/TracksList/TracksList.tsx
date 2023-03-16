@@ -8,10 +8,12 @@ interface Props {
 
 export const TracksList = ({ tracks }: Props) => {
   return (
-    <div className='tracksList'>
-      {tracks.map(track => (
-        <TrackListItem track={track} key={track.id} />
-      ))}
-    </div>
+    <section className='tracks'>
+      <div className='tracks-list'>
+        {tracks.map(track => (
+          <TrackListItem track={track} key={track.id} />
+        ))}
+      </div>
+    </section>
   );
 };
