@@ -1,10 +1,10 @@
-.artists-list {
+.albums-list {
   display: flex;
   flex-wrap: wrap;
   padding: 0 2px 20px;
   justify-content: space-around;
 }
 
-.artists-list .artist {
+.albums-list .album {
   margin: 0 16px 16px 0;
 }

@@ -19,3 +19,9 @@
   font-size: 18px;
   color: var(--text-secondary);
 }
+
+.search-albums {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2px 20px;
+}

@@ -21,20 +21,27 @@ import { ArtistsPage } from './pages/ArtistsPage/ArtistsPage';
 import { ArtistPage } from './pages/ArtistPage/ArtistPage';
 import { ArtistsService } from './api/ArtistsService';
 import { artistsSlice } from './reducers/artistsSlice';
+import { AlbumsService } from './api/AlbumsService';
+import { albumsSlice } from './reducers/albumsSlice';
+import { AlbumPage } from './pages/AlbumPage/AlbumPage';
+import { AlbumsPage } from './pages/AlbumsPage/AlbumsPage';
 
 const store = configureStore({
   reducer: {
     search: searchSlice.reducer,
     artists: artistsSlice.reducer,
+    albums: albumsSlice.reducer,
     [AuthService.reducerPath]: AuthService.reducer,
     [SearchService.reducerPath]: SearchService.reducer,
     [ArtistsService.reducerPath]: ArtistsService.reducer,
+    [AlbumsService.reducerPath]: AlbumsService.reducer,
   },
   middleware: [
     thunk,
     AuthService.middleware,
     SearchService.middleware,
     ArtistsService.middleware,
+    AlbumsService.middleware,
     ...getDefaultMiddleware({
       serializableCheck: false,
     }),
@@ -55,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: 'artists/:id',
         element: <ArtistPage />,
+      },
+      {
+        path: 'albums',
+        element: <AlbumsPage />,
+      },
+      {
+        path: 'albums/:id',
+        element: <AlbumPage />,
       },
       {
         path: 'artists',

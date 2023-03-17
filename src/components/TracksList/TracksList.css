@@ -1,7 +1,6 @@
 .tracks {
   min-width: 340px;
-  padding-bottom: 16px;
-  margin: 0 2px;
+  margin: 0 2px 16px;
 }
 
 @media screen and (max-width: 649px) {
@@ -19,5 +18,4 @@
 .tracks-list {
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
 }

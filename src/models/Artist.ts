@@ -1,24 +1,30 @@
-import { SearchResult, SearchResultType } from './SearchResult';
+import { SearchResult } from './SearchResult';
+import { RawArtist, RawArtistFullInfo } from './RawArtist';
+import { RawModel } from './RawModel';
 
-export class Artist implements SearchResult {
-  image: string;
-  name: string;
-  id: string;
+export class ArtistCompact extends SearchResult {
+  constructor(params: RawModel) {
+    super(params);
+  }
+}
+
+export class Artist extends SearchResult {
   genres: string[];
-  type: SearchResultType;
-  followers?: number;
-  constructor(
-    image: string,
-    name: string,
-    id: string,
-    genres: string[],
-    followers?: number,
-  ) {
-    this.type = SearchResultType.artist;
-    this.image = image;
-    this.name = name;
-    this.id = id;
-    this.genres = genres;
-    this.followers = followers;
+  image: string;
+  constructor(artist: RawArtist) {
+    super(artist);
+    this.genres = artist.genres;
+    this.image = artist.images
+      ? artist.images[artist.images.length - 1]?.url
+      : '';
+  }
+}
+
+export class FullArtistInfo extends Artist {
+  followers: number;
+  constructor(artist: RawArtistFullInfo) {
+    super(artist);
+    this.followers = artist.followers.total;
+    this.image = artist.images[0]?.url;
   }
 }

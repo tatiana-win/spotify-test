@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from './BaseQueryWithReauth';
-import { Artist } from '../models/Artist';
+import { Artist, FullArtistInfo } from '../models/Artist';
 import { Track } from '../models/Track';
 import { RawArtist, RawArtistFullInfo } from '../models/RawArtist';
 import { RawTrack } from '../models/RawTrack';
@@ -11,7 +11,7 @@ export const ArtistsService = createApi({
   baseQuery: baseQueryWithReauth,
   reducerPath: 'artistsApi',
   endpoints: build => ({
-    getArtist: build.query<Artist, string>({
+    getArtist: build.query<FullArtistInfo, string>({
       query: id => ({
         url: `https://api.spotify.com/v1/artists/${id}`,
         method: 'GET',
@@ -20,13 +20,7 @@ export const ArtistsService = createApi({
         },
       }),
       transformResponse(response: RawArtistFullInfo) {
-        return new Artist(
-          response.images[0]?.url,
-          response.name,
-          response.id,
-          response.genres,
-          response.followers.total,
-        );
+        return new FullArtistInfo(response);
       },
       transformErrorResponse: (
         response: { status: string | number },
@@ -46,17 +40,7 @@ export const ArtistsService = createApi({
         },
       }),
       transformResponse(response: { tracks: RawTrack[] }) {
-        return response.tracks.map(
-          (track: RawTrack) =>
-            new Track(
-              track.external_urls.spotify,
-              track.album.images[0]?.url,
-              track.name,
-              track.id,
-              track.duration_ms,
-              new Artist('', track.artists[0].name, track.artists[0].id, []),
-            ),
-        );
+        return response.tracks.map((track: RawTrack) => new Track(track));
       },
       transformErrorResponse: (
         response: { status: string | number },
@@ -75,13 +59,7 @@ export const ArtistsService = createApi({
       transformResponse(response: { artists: RawArtist[] }) {
         return {
           artists: response.artists.map(
-            (artist: RawArtist) =>
-              new Artist(
-                artist.images[artist.images.length - 1]?.url,
-                artist.name,
-                artist.id,
-                artist.genres,
-              ),
+            (artist: RawArtist) => new Artist(artist),
           ),
         };
       },
@@ -104,16 +82,7 @@ export const ArtistsService = createApi({
         },
       }),
       transformResponse(response: { items: RawAlbum[] }) {
-        return response.items.map(
-          album =>
-            new Album(
-              album.images[0]?.url,
-              album.name,
-              album.id,
-              album.release_date,
-              album.artists[0],
-            ),
-        );
+        return response.items.map(album => new Album(album));
       },
       transformErrorResponse: (
         response: { status: string | number },

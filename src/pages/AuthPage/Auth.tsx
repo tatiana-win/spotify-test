@@ -16,7 +16,12 @@ export const Auth = () => {
   );
   return (
     <div className='auth'>
-      <Logo className='auth-logo' />
+      <img
+        src={process.env.PUBLIC_URL + '/music.gif'}
+        alt='logo'
+        className='auth-gif'
+      />
+      <Logo className='auth-logo' fill='#fff' />
       <button className='button primary auth-button' onClick={handleClick}>
         Log In{' '}
       </button>

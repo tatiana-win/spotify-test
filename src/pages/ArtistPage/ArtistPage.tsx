@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getArtist } from '../../actions/getArtist';
 import { connect } from 'react-redux';
-import { Artist } from '../../models/Artist';
+import { Artist, FullArtistInfo } from '../../models/Artist';
 import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 
@@ -14,13 +14,14 @@ import { ArtistListItem } from '../../components/Artist/Artist';
 import { Album } from '../../models/Album';
 import { AlbumListItem } from '../../components/Album/Album';
 import { ArtistData } from '../../models/ArtistData';
+import { SpotifyButton } from '../../components/SpotifyButton/SpotifyButton';
 
 interface MapProps {
-  artists: Record<string, Artist>;
+  artists: Record<string, FullArtistInfo>;
   info: Record<string, ArtistData>;
 }
 interface DispatchProps {
-  getArtist: (id: string) => Promise<Artist>;
+  getArtist: (id: string) => Promise<FullArtistInfo>;
   getArtistInfo: (
     id: string,
   ) => Promise<{ tracks: Track[]; relatedArtists: Artist[]; albums: Album[] }>;
@@ -70,6 +71,7 @@ const ArtistPagePure = ({ artists, getArtist, getArtistInfo, info }: Props) => {
       ) : (
         <>
           <section className='artistPage-header'>
+            <SpotifyButton url={artist.url} className='artistPage-spotify' />
             <div className='artistPage-imageContainer'>
               <div
                 className='artistPage-image'
@@ -79,7 +81,9 @@ const ArtistPagePure = ({ artists, getArtist, getArtistInfo, info }: Props) => {
             </div>
 
             <div className='artistPage-description'>
-              <p className='artistPage-type'>Artist</p>
+              <p className='artistPage-type'>
+                Artist <SpotifyButton url={artist.url} />
+              </p>
               <h1 className='artistPage-name'>{artist.name}</h1>
               {!!artist.followers && (
                 <p className='artistPage-followers'>

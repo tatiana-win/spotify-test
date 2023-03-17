@@ -8,6 +8,7 @@ import { NavItem } from './models/NavItem';
 import { SearchIcon } from './icons/SearchIcon';
 import { PeopleIcon } from './icons/PeopleIcon';
 import { BottomNavigation } from './components/BottomNavigation/BottomNavigation';
+import { AlbumIcon } from './icons/AlbumIcon';
 
 const navItems: NavItem[] = [
   {
@@ -19,6 +20,11 @@ const navItems: NavItem[] = [
     name: 'Artists',
     link: 'artists',
     icon: <PeopleIcon />,
+  },
+  {
+    name: 'Albums',
+    link: 'albums',
+    icon: <AlbumIcon />,
   },
 ];
 

@@ -3,6 +3,7 @@ import { searchResultsLoaded } from '../reducers/searchSlice';
 import { SearchType } from '../models/SearchType';
 import { randomInRange } from '../utils/random';
 import { ArtistsService } from '../api/ArtistsService';
+import { AlbumsService } from '../api/AlbumsService';
 
 const possibleArtists = [
   '12Chz98pHFMPJEknJQMWvI',
@@ -16,6 +17,8 @@ const getRecommendations = (type = SearchType.all) => {
       return ArtistsService.endpoints.getRelatedArtists.initiate(
         possibleArtists[randomInRange(0, possibleArtists.length - 1)],
       );
+    case SearchType.album:
+      return AlbumsService.endpoints.getNewReleases.initiate();
     default:
       return SearchService.endpoints.recommendations.initiate();
   }

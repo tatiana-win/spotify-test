@@ -1,29 +1,18 @@
-import { SearchResult, SearchResultType } from './SearchResult';
-import { Artist } from './Artist';
+import { SearchResult } from './SearchResult';
+import { ArtistCompact } from './Artist';
+import { RawTrack } from './RawTrack';
 
-export class Track implements SearchResult {
+export class Track extends SearchResult {
   image: string;
-  name: string;
-  id: string;
-  type: SearchResultType;
-  artist: Artist;
+  artist: ArtistCompact;
   duration: number;
-  url: string;
 
-  constructor(
-    url: string,
-    image: string,
-    name: string,
-    id: string,
-    duration: number,
-    artist: Artist,
-  ) {
-    this.url = url;
-    this.type = SearchResultType.track;
-    this.image = image;
-    this.name = name;
-    this.id = id;
-    this.artist = artist;
-    this.duration = duration;
+  constructor(track: RawTrack, image = '') {
+    super(track);
+    this.image = track.album?.images
+      ? track.album.images[track.album.images.length - 1]?.url
+      : image;
+    this.artist = new ArtistCompact(track.artists[0]);
+    this.duration = track.duration_ms;
   }
 }

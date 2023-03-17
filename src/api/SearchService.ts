@@ -5,15 +5,19 @@ import { Track } from '../models/Track';
 import { SearchType } from '../models/SearchType';
 import { RawArtist } from '../models/RawArtist';
 import { RawTrack } from '../models/RawTrack';
+import { RawAlbum } from '../models/RawAlbum';
+import { Album } from '../models/Album';
 
 interface SearchRawResponse {
   artists?: { items: RawArtist[] };
   tracks?: { items: RawTrack[] };
+  albums: { items: RawAlbum[] };
 }
 
 interface SearchResponse {
   artists: Artist[];
   tracks: Track[];
+  albums: Album[];
 }
 
 export const SearchService = createApi({
@@ -36,31 +40,14 @@ export const SearchService = createApi({
         return {
           artists:
             response.artists?.items.map(
-              (artist: RawArtist) =>
-                new Artist(
-                  artist.images[0]?.url,
-                  artist.name,
-                  artist.id,
-                  artist.genres,
-                ),
+              (artist: RawArtist) => new Artist(artist),
             ) || [],
           tracks:
-            response.tracks?.items.map(
-              (track: RawTrack) =>
-                new Track(
-                  track.external_urls.spotify,
-                  track.album.images[track.album.images.length - 1]?.url,
-                  track.name,
-                  track.id,
-                  track.duration_ms,
-                  new Artist(
-                    '',
-                    track.artists[0]?.name,
-                    track.artists[0]?.id,
-                    [],
-                  ),
-                ),
-            ) || [],
+            response.tracks?.items.map((track: RawTrack) => new Track(track)) ||
+            [],
+          albums:
+            response.albums?.items.map((album: RawAlbum) => new Album(album)) ||
+            [],
         };
       },
       transformErrorResponse: (
@@ -83,17 +70,8 @@ export const SearchService = createApi({
       transformResponse(response: { tracks: RawTrack[] }) {
         return {
           artists: [],
-          tracks: response.tracks.map(
-            (track: RawTrack) =>
-              new Track(
-                track.external_urls.spotify,
-                track.album.images[track.album.images.length - 1]?.url,
-                track.name,
-                track.id,
-                track.duration_ms,
-                new Artist('', track.artists[0].name, track.artists[0].id, []),
-              ),
-          ),
+          albums: [],
+          tracks: response.tracks.map((track: RawTrack) => new Track(track)),
         };
       },
       transformErrorResponse: (

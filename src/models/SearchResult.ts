@@ -1,12 +1,18 @@
+import { RawModel } from './RawModel';
+
 export enum SearchResultType {
   track,
   artist,
   album,
   playlist,
 }
-export interface SearchResult {
-  image: string;
+export abstract class SearchResult {
+  url: string;
   name: string;
   id: string;
-  type: SearchResultType;
+  constructor(model: RawModel) {
+    this.url = model.external_urls.spotify;
+    this.name = model.name;
+    this.id = model.id;
+  }
 }

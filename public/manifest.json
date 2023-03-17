@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Search tracks, artists, albums",
+  "name": "Search tracks, artists, albums",
   "icons": [
     {
       "src": "favicon.ico",

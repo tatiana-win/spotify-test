@@ -1,22 +1,13 @@
 import { RawImage } from './RawImage';
+import { RawModel } from './RawModel';
 
-export interface RawTrack {
-  album: {
+export interface RawTrack extends RawModel {
+  album?: {
     images: RawImage[];
     id: string;
     name: string;
     release_date: string;
   };
-  artists: {
-    href: string;
-    id: string;
-    name: string;
-  }[];
-  external_urls: {
-    spotify: string;
-  };
-  href: string;
-  id: string;
-  name: string;
+  artists: RawModel[];
   duration_ms: number;
 }

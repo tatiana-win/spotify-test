@@ -9,10 +9,13 @@ import { TracksList } from '../../components/TracksList/TracksList';
 import { useLoaderData } from 'react-router-dom';
 import { SearchInput } from '../../components/SearchInput/Searchinput';
 import { Loader } from '../../components/Loader/Loader';
+import { Album } from '../../models/Album';
+import { AlbumListItem } from '../../components/Album/Album';
 
 interface MapProps {
   artists: Artist[];
   tracks: Track[];
+  albums: Album[];
 }
 interface DispatchProps {
   search: (q?: string) => Promise<void>;
@@ -20,7 +23,7 @@ interface DispatchProps {
 
 interface Props extends MapProps, DispatchProps {}
 
-const SearchPure = ({ search, artists, tracks }: Props) => {
+const SearchPure = ({ search, artists, tracks, albums }: Props) => {
   // @ts-ignore
   const { q } = useLoaderData();
   const [query, setQuery] = useState(q);
@@ -83,6 +86,17 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
           <TracksList tracks={tracks} />
         </>
       )}
+
+      {!!albums.length && (
+        <>
+          <h2 className='subtitle'>Albums</h2>
+          <div className='search-albums'>
+            {albums.map(album => (
+              <AlbumListItem album={album} key={album.id} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -90,6 +104,7 @@ const SearchPure = ({ search, artists, tracks }: Props) => {
 const mapStateToProps = (state: any): MapProps => ({
   artists: state.search.artists,
   tracks: state.search.tracks,
+  albums: state.search.albums,
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
