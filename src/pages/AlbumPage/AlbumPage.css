@@ -1,0 +1,149 @@
+.albumPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.albumPage-header {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.albumPage-image {
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+}
+
+.albumPage-imageContainer {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 16px 16px 0 0;
+}
+
+.albumPage-description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.albumPage-type {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.albumPage-name {
+  font-size: 45px;
+  line-height: 45px;
+  font-weight: 700;
+  color: var(--text-base);
+  margin: 16px 0 8px;
+}
+
+.albumPage-tracks {
+  margin-top: 20px;
+}
+
+.albumPage-artist {
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--text-base);
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.albumPage-info {
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--text-secondary);
+  margin-top: 16px;
+}
+
+.albumPage-tracksCount::before {
+  content: '•';
+  margin: 0 4px;
+}
+
+.albumPage-artist:hover {
+  text-decoration: underline;
+}
+
+.albumPage-spotify.spotifyButton {
+  display: none;
+}
+
+@media screen and (max-width: 649px) {
+  .albumPage-image {
+    width: calc(100vw - 32px);
+    height: 400px;
+    border-radius: 0;
+    background-size: cover;
+    margin: 0;
+  }
+
+  .albumPage-imageContainer {
+    width: calc(100vw - 32px);
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 16px 16px 0 0;
+  }
+
+  .albumPage-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .albumPage-description {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    text-align: center;
+  }
+
+  .albumPage-name,
+  .albumPage-artist {
+    color: #eee;
+  }
+
+  .albumPage-type,
+  .albumPage-info {
+    color: #aaa;
+  }
+
+  .albumPage-tracks {
+    margin-top: 0;
+  }
+
+  .albumPage-type {
+    justify-content: center;
+  }
+
+  .albumPage-type .spotifyButton {
+    display: none;
+  }
+
+  .albumPage-spotify.spotifyButton {
+    position: absolute;
+    top: 32px;
+    right: 16px;
+    z-index: 1;
+    display: block;
+  }
+}

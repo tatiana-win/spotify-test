@@ -1,0 +1,27 @@
+.search-input {
+  margin-top: 20px;
+  /*width: 100%;*/
+  padding: 8px 40px;
+}
+
+.search-artists {
+  display: flex;
+  overflow-x: scroll;
+  padding: 8px;
+}
+
+.search-artists > .artist {
+  margin-right: 16px;
+}
+
+.search-stub {
+  margin-top: 20px;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.search-albums {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2px 20px;
+}

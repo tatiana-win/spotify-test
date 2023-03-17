@@ -1,4 +1,21 @@
-.tracksList {
-    display: flex;
-    flex-direction: column;
+.tracks {
+  min-width: 340px;
+  margin: 0 2px 16px;
+}
+
+@media screen and (max-width: 649px) {
+  .tracks {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .tracks {
+    width: 70%;
+  }
+}
+
+.tracks-list {
+  display: flex;
+  flex-direction: column;
 }

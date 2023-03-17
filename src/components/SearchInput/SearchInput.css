@@ -1,0 +1,33 @@
+.search-input-container {
+  position: relative;
+  display: flex;
+}
+
+@media screen and (min-width: 650px) {
+  .search-input-container {
+    max-width: 360px;
+  }
+}
+
+@media screen and (max-width: 649px) {
+  .search-input-container {
+    width: calc(100vw - 32px);
+  }
+}
+
+.search-input-icon {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+}
+
+.search-input-clear {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  cursor: pointer;
+}
+
+.search-input-clear:hover > svg {
+  fill: var(--text-hover);
+}
