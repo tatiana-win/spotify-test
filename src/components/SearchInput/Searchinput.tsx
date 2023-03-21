@@ -46,6 +46,7 @@ export const SearchInput = ({ onChange, defaultValue }: Props) => {
       </span>
       <input
         name='q'
+        id='search-input'
         defaultValue={defaultValue}
         className='input search-input'
         onChange={handleChange}

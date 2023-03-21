@@ -56,7 +56,7 @@ const SearchPure = ({ search, artists, tracks, albums }: Props) => {
   }, []);
 
   return (
-    <div className='page'>
+    <div className='page' id='search-page'>
       <h1 className='title'>Search</h1>
       <SearchInput onChange={handleChange} defaultValue={q} />
       {loading && (

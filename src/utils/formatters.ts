@@ -10,6 +10,10 @@ const addLeadingZeroForThousand = (value: number) => {
   }
   return value;
 };
+
+/**
+ * For number in milliseconds returns string in time format "22:35:05"
+ */
 export const formatDuration = (duration: number): string => {
   const hours = Math.floor(duration / (3600 * 1000));
   duration = hours > 0 ? duration - hours * 3600 * 1000 : duration;
@@ -22,6 +26,9 @@ export const formatDuration = (duration: number): string => {
   }:${seconds ? addLeadingZeroForTime(seconds) : '00'}`;
 };
 
+/**
+ * For number like 12345678 returns ""12 345 678"
+ */
 export const formatNumberWithSpaces = (value: number): string => {
   if (value < 1000) {
     return value.toString();

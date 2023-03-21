@@ -13,9 +13,7 @@ export class TokenService {
   constructor() {
     this.storageService = new StorageService();
 
-    this.token = this.storageService.get(TOKEN_KEY)
-      ? JSON.parse(this.storageService.get(TOKEN_KEY))
-      : undefined;
+    this.token = this.storageService.get(TOKEN_KEY);
     this.refreshToken = this.storageService.get(REFRESH_TOKEN_KEY);
     const expiresAt = this.storageService.get<string>(EXPIRES_AT_KEY);
     this.expiresAt = expiresAt ? new Date(+expiresAt) : undefined;

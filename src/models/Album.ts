@@ -1,16 +1,16 @@
 import { Artist } from './Artist';
 import { Track } from './Track';
 import { RawAlbum, RawFullAlbumInfo } from './RawAlbum';
-import { SearchResult } from './SearchResult';
+import { MediaModel } from './MediaModel';
 
-export class Album extends SearchResult {
+export class Album extends MediaModel {
   image: string;
   artist: Artist;
   year: number;
   constructor(album: RawAlbum) {
     super(album);
-    this.image = album.images[0]?.url;
-    this.year = +album.release_date?.split('-')[0];
+    this.image = album.images[0]?.url ?? '';
+    this.year = +album.release_date?.split('-')[0] ?? '';
     this.artist = new Artist(album.artists[0]);
   }
 }

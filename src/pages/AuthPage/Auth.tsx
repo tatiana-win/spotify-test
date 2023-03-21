@@ -22,7 +22,11 @@ export const Auth = () => {
         className='auth-gif'
       />
       <Logo className='auth-logo' fill='#fff' />
-      <button className='button primary auth-button' onClick={handleClick}>
+      <button
+        id='login-button'
+        className='button primary auth-button'
+        onClick={handleClick}
+      >
         Log In{' '}
       </button>
     </div>
