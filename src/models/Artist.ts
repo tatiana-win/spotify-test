@@ -1,14 +1,14 @@
-import { SearchResult } from './SearchResult';
+import { MediaModel } from './MediaModel';
 import { RawArtist, RawArtistFullInfo } from './RawArtist';
 import { RawModel } from './RawModel';
 
-export class ArtistCompact extends SearchResult {
+export class ArtistCompact extends MediaModel {
   constructor(params: RawModel) {
     super(params);
   }
 }
 
-export class Artist extends SearchResult {
+export class Artist extends MediaModel {
   genres: string[];
   image: string;
   constructor(artist: RawArtist) {
@@ -25,6 +25,6 @@ export class FullArtistInfo extends Artist {
   constructor(artist: RawArtistFullInfo) {
     super(artist);
     this.followers = artist.followers.total;
-    this.image = artist.images[0]?.url;
+    this.image = artist.images[0]?.url ?? '';
   }
 }

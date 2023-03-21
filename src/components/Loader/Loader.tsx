@@ -2,14 +2,9 @@ import './Loader.css';
 export const Loader = () => {
   return (
     <div className='loader'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      {Array.from({ length: 8 }, value => value).map(() => (
+        <div />
+      ))}
     </div>
   );
 };

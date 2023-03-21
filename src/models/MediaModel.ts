@@ -1,12 +1,6 @@
 import { RawModel } from './RawModel';
 
-export enum SearchResultType {
-  track,
-  artist,
-  album,
-  playlist,
-}
-export abstract class SearchResult {
+export abstract class MediaModel {
   url: string;
   name: string;
   id: string;

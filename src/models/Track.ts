@@ -1,8 +1,8 @@
-import { SearchResult } from './SearchResult';
+import { MediaModel } from './MediaModel';
 import { ArtistCompact } from './Artist';
 import { RawTrack } from './RawTrack';
 
-export class Track extends SearchResult {
+export class Track extends MediaModel {
   image: string;
   artist: ArtistCompact;
   duration: number;
