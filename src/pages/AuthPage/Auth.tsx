@@ -5,8 +5,7 @@ import { CLIENT_ID, ROOT_ENDPOINT } from '../../config';
 
 const REDIRECT_URI = `${ROOT_ENDPOINT}/authorize`;
 const RESPONSE_TYPE = 'code';
-const SCOPES =
-  'user-read-private user-read-email playlist-read-private playlist-read-collaborative user-library-modify user-library-read user-read-playback-state user-read-recently-played user-library-read';
+const SCOPES = '';
 const AUTH_ENDPOINT = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`;
 
 export const Auth = () => {

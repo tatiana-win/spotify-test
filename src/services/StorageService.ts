@@ -5,7 +5,9 @@ export class StorageService {
   }
 
   set<T>(key: string, value: T): void {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    if (value) {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    }
   }
 
   remove(key: string) {
